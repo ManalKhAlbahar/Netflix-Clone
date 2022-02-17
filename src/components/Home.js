@@ -3,13 +3,15 @@ import MovieList from './MovieList';
 
 export default function Home() {
 
-    const [Movie, setMovie] = useState();
+    const [movie, setMovie] = useState();
     const getMovie = async () => {
         try {
+            console.log(`url: ${process.env.REACT_APP_SERVER}/`)
             const response = await fetch(`${process.env.REACT_APP_SERVER}`)
+            console.log(response);
             const data = await response.json();
             console.log(data);
-            setMovies(data);
+            setMovie(data);
         } catch (error) {
             console.log("error", error);
         }
@@ -19,11 +21,12 @@ export default function Home() {
         getMovie();
     }, []);
 
+    console.log("hello");
     return (
         <>
             <h1>Home Page</h1>
                 {
-                    Movie && (<MovieList movie={Movie} />)
+                   movie && (<MovieList movies={movie} />)
                 }
          
 
