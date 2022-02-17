@@ -6,8 +6,8 @@ export default function Home() {
     const [movie, setMovie] = useState();
     const getMovie = async () => {
         try {
-            console.log(`url: ${process.env.REACT_APP_SERVER}/`)
-            const response = await fetch(`${process.env.REACT_APP_SERVER}`)
+            console.log(`url: ${process.env.REACT_APP_SERVER}`)
+            const response = await fetch(`${process.env.REACT_APP_SERVER}/trending`)
             console.log(response);
             const data = await response.json();
             console.log(data);
@@ -25,6 +25,8 @@ export default function Home() {
     return (
         <>
             <h1>Home Page</h1>
+            <h3>Movie List</h3>
+
                 {
                    movie && (<MovieList movies={movie} />)
                 }
