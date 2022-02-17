@@ -1,32 +1,39 @@
 import React from 'react';
 import { Button, Modal, Form } from 'react-bootstrap/';
-import { useRef } from 'react';
+import { Card } from 'react-bootstrap';
 
 export default function ModalMovie(props) {
 
 
     return (
         <>
-            <Modal show={props.show} onHide={() => { props.handleColse() }}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{props.choseMovie.name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <img width='100%' src={`https://image.tmdb.org/t/p/w500/${props.chosenMovie.poster_path}`} />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Add Comment:</Form.Label>
-                        <Form.Control type="textarea" placeholder={ "Add Your Comment Here ..😄."} />
-                    </Form.Group>
-                    <Button className="addBtn" variant="success" type="submit"  >
-                        submit
-                    </Button>
-                    <Button variant="success" onClick={props.handleColse}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </>
-    )
+        <Modal show={props.show} onHide={props.ModalMoviehandleClose}>
+        <Modal.Header closeButton>
+            <Modal.Title>{props.chosenMovie.title}</Modal.Title>
+        </Modal.Header>
+        <Card.Img variant="top" src={"https://image.tmdb.org/t/p/w500" + `${props.chosenMovie.poster_path}`} />
+
+        <Modal.Footer>
+            <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control type="text" placeholder="Enter your comment" />
+                    <Form.Text className="text-muted">
+
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="danger" type="submit">
+                    Submit
+                </Button>
+            </Form>
+            <Button variant="secodary" onClick={props.handleClose}>
+                Close
+            </Button>
+            <Button variant="danger" onClick={props.handleClose}>
+                Save Changes
+            </Button>
+        </Modal.Footer>
+    </Modal>
+</>
+)
 }
